@@ -10,6 +10,7 @@ namespace("xse", function ()
 
         set_pcxxheader("include/IPrefix.h")
         add_files("src/*.cpp")
-        add_includedirs("include",{public = true})
+        add_headerfiles("include/(**)")
+        add_includedirs("include")
 
 end)
