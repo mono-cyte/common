@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ITypes.h"
+#include "IDebugLog.h"
 #include "ICriticalSection.h"
 
 template <typename T, UInt32 size>

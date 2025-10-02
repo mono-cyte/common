@@ -1,56 +1,51 @@
 #pragma once
+#include "ITypes.h"
 
 // ILink members must be public
 template <typename T>
-struct ILink
-{
+struct ILink {
 	static const UInt32 s_offset;
 
-	ILink <T>	* next;
-	ILink <T>	* prev;
+	ILink<T>* next;
+	ILink<T>* prev;
 
-	T *	GetObj(void)	{ return (T *)(((uintptr_t)this) - s_offset); }
+	T* GetObj(void) { return (T*)(((uintptr_t)this) - s_offset); }
 
-	static ILink <T> *	GetLink(T * obj)	{ return (ILink <T> *)(((uintptr_t)obj) + s_offset); }
+	static ILink<T>* GetLink(T* obj) { return (ILink<T>*)(((uintptr_t)obj) + s_offset); }
 
-	void	Unlink(void)
-	{
-		if(next)	next->prev = prev;
-		if(prev)	prev->next = next;
+	void Unlink(void) {
+		if (next)
+			next->prev = prev;
+		if (prev)
+			prev->next = next;
 
 		next = prev = NULL;
 	}
 
-	void	LinkBefore(T * obj)
-	{
+	void LinkBefore(T* obj) {
 		LinkBefore(GetLink(obj));
 	}
 
-	void	LinkAfter(T * obj)
-	{
+	void LinkAfter(T* obj) {
 		LinkAfter(GetLink(obj));
 	}
 
-	void	LinkBefore(ILink <T> * link)
-	{
+	void LinkBefore(ILink<T>* link) {
 		link->next = this;
 		link->prev = prev;
 
-		if(prev)
-		{
+		if (prev) {
 			prev->next = link;
 		}
 
 		prev = link;
 	}
 
-	void	LinkAfter(ILink <T> * link)
-	{
+	void LinkAfter(ILink<T>* link) {
 		link->next = next;
 		link->prev = this;
 
-		if(next)
-		{
+		if (next) {
 			next->prev = link;
 		}
 
@@ -59,28 +54,24 @@ struct ILink
 };
 
 template <typename T>
-struct ILinkedList
-{
-	ILink <T>	begin;
-	ILink <T>	end;
+struct ILinkedList {
+	ILink<T> begin;
+	ILink<T> end;
 
-	void	Reset(void)
-	{
+	void Reset(void) {
 		begin.next = &end;
 		begin.prev = NULL;
-		end.next = NULL;
-		end.prev = &begin;
+		end.next   = NULL;
+		end.prev   = &begin;
 	}
 
-	void	PushFront(T * obj)
-	{
-		ILink <T>	* objLink = ILink <T>::GetLink(obj);
+	void PushFront(T* obj) {
+		ILink<T>* objLink = ILink<T>::GetLink(obj);
 
 		objLink->next = begin.next;
 		objLink->prev = &begin;
 
-		if(objLink->next)
-		{
+		if (objLink->next) {
 			objLink->next->prev = objLink;
 		}
 
@@ -88,4 +79,5 @@ struct ILinkedList
 	}
 };
 
-#define ILINK_INIT(baseType, memberName)	template <typename T> const UInt32 ILink <T>::s_offset = offsetof(baseType, memberName)
+#define ILINK_INIT(baseType, memberName) template <typename T> \
+										 const UInt32 ILink<T>::s_offset = offsetof(baseType, memberName)

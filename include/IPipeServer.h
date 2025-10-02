@@ -1,25 +1,26 @@
 #pragma once
+#include "ITypes.h"
+#include <windows.h>
 
-class IPipeServer
-{
+
+class IPipeServer {
 public:
-	struct MessageHeader
-	{
-		UInt32	type;
-		UInt32	length;
+	struct MessageHeader {
+		UInt32 type;
+		UInt32 length;
 	};
 
 	IPipeServer();
 	virtual ~IPipeServer();
 
-	bool	Open(const char * name);
-	void	Close(void);
+	bool Open(const char* name);
+	void Close(void);
 
-	bool	WaitForClient(void);
+	bool WaitForClient(void);
 
-	bool	ReadMessage(UInt8 * buf, UInt32 length);
-	bool	WriteMessage(MessageHeader * msg);
+	bool ReadMessage(UInt8* buf, UInt32 length);
+	bool WriteMessage(MessageHeader* msg);
 
 private:
-	HANDLE	m_pipe;
+	HANDLE m_pipe;
 };

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IErrors.h"
+#include <cstdint>
 
 #pragma warning(push)
 #pragma warning(disable : 4311 4312)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IDataStream.h"
+#include <windows.h>
 
 /**
  *	An input file stream

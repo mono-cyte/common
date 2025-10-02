@@ -1,6 +1,6 @@
 #include "IErrors.h"
 #include "IDebugLog.h"
-#include <cstdlib>
+#include "ITypes.h"
 
 __declspec(noreturn) static void IErrors_Halt(void) {
 	// crash

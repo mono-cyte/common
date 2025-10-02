@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IErrors.h"
+#include "ITypes.h"
+
 
 /**
  *	An arbitrary data stream

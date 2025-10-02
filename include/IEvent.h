@@ -1,6 +1,8 @@
 #pragma once
 
 #include "IInterlockedLong.h"
+#include "ITypes.h"
+#include <windows.h>
 
 class IEvent {
 public:

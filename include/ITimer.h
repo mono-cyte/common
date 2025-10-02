@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ITypes.h"
+#include <windows.h>
 
 /**
  *	A high-resolution timer.

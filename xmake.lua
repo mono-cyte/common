@@ -8,7 +8,7 @@ namespace("xse", function ()
         set_arch("x64")
         set_toolchains("msvc")
 
-        set_pcxxheader("include/IPrefix.h")
+        -- set_pcxxheader("include/IPrefix.h")
         add_files("src/*.cpp")
         add_headerfiles("include/(**)")
         add_includedirs("include")
