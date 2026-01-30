@@ -1,0 +1,20 @@
+.{
+    .name = .common,
+    .version = "0.0.0",
+    .dependencies = .{
+        .log = .{
+            .path = "lib/log",
+        },
+        .re = .{
+            .path = "lib/re",
+        },
+        .skse = .{
+            .path = "lib/skse",
+        },
+        .windows = .{
+            .path = "lib/windows",
+        },
+    },
+    .paths = .{""},
+    .fingerprint = 0xe5ec7051d47d3c52,
+}

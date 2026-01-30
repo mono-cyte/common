@@ -1,0 +1,15 @@
+.{
+    .name = .re,
+    .fingerprint = 0x61089c5c31eb5864,
+    .version = "0.0.0",
+    .dependencies = .{
+        .windows = .{
+            .path = "../windows",
+        },
+    },
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+    },
+}

@@ -1,0 +1,10 @@
+.{
+    .name = .windows,
+    .version = "0.0.0",
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+    },
+    .fingerprint = 0xe3e7859b9c9b2953,
+}
