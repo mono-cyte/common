@@ -1,8 +1,21 @@
 const std = @import("std");
 const buildin = @import("builtin");
 
+pub fn addDllSKSE(b: *std.Build, m: *std.Build.Module) *std.Build.Step.Compile {
+    var dll = b.addLibrary(.{
+        .name = "skse",
+        .root_module = m,
+        .linkage = .dynamic,
+    });
+    dll.entry = .{ .symbol_name = "entry" };
+    return dll;
+}
+
 pub fn build(b: *std.Build) void {
-    const target = b.standardTargetOptions(.{});
+    const target = b.resolveTargetQuery(.{
+        .cpu_arch = .x86_64,
+        .os_tag = .windows,
+    });
     const optimize = b.standardOptimizeOption(.{});
 
     const windows = b.dependency("windows", .{
@@ -25,13 +38,7 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    var dll = b.addLibrary(.{
-        .name = "skse",
-        .root_module = root,
-        .linkage = .dynamic,
-    });
-    dll.dll_export_fns = true;
-    dll.setLinkerScript(b.path("skse64.def"));
+    const dll = addDllSKSE(b, root);
 
     b.installArtifact(dll);
 }

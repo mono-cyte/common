@@ -2,11 +2,14 @@ const std = @import("std");
 const windows = std.os.windows;
 pub const ntdll = @import("ntdll.zig");
 pub const ucrtbase = @import("ucrtbase.zig");
+pub const user32 = @import("user32.zig");
 
+pub const UINT = windows.UINT;
 pub const ULONG = windows.ULONG;
 pub const ACCESS_MASK = windows.ACCESS_MASK;
-pub const DWORD = windows.DWORD;
 pub const BOOL = windows.BOOL;
+pub const WORD = windows.WORD;
+pub const DWORD = windows.DWORD;
 pub const LPCVOID = windows.LPCVOID;
 pub const PMEMORY_BASIC_INFORMATION = windows.PMEMORY_BASIC_INFORMATION;
 pub const MEM = windows.MEM;
@@ -17,6 +20,7 @@ pub const PVOID = windows.PVOID;
 pub const HANDLE = windows.HANDLE;
 pub const HMODULE = windows.HMODULE;
 pub const HINSTANCE = windows.HINSTANCE;
+pub const HWND = windows.HWND;
 pub const SECURITY_ATTRIBUTES = windows.SECURITY_ATTRIBUTES;
 pub const LPTHREAD_START_ROUTINE = windows.LPTHREAD_START_ROUTINE;
 pub const LPVOID = windows.LPVOID;
@@ -28,6 +32,7 @@ pub const Win32Error = windows.Win32Error;
 pub const BOOLEAN = windows.BOOLEAN;
 pub const PWSTR = windows.PWSTR;
 pub const PCWSTR = windows.PCWSTR;
+pub const LPCWSTR = windows.LPCWSTR;
 pub const UNICODE_STRING = windows.UNICODE_STRING;
 
 pub const DllReason = enum(u32) {
@@ -43,6 +48,9 @@ pub const _PIFV = ?*const fn () callconv(.c) void;
 pub const teb = windows.teb;
 
 pub const GetCurrentProcess = windows.GetCurrentProcess;
+pub const GetCurrentThread = windows.GetCurrentThread;
+pub const GetCurrentProcessId = windows.GetCurrentProcessId;
+pub const GetCurrentThreadId = windows.GetCurrentThreadId;
 
 pub const CLIENT_ID = extern struct {
     UniqueProcess: ?HANDLE,
